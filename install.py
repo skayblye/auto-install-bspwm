@@ -14,3 +14,5 @@ def installfont():
     
 
 installfont()
+
+echo "hola"
