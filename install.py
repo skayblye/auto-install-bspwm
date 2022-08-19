@@ -12,7 +12,7 @@ def shellerores():
 
 # actializacion de dependecias
 def systemupdate():
-    updatesystem = "sudo apt update -y"
+    updatesystem = "sudo apt update"
     
     subprocess.run(updatesystem, shell=True)
     
@@ -32,16 +32,17 @@ def installfont():
 #instalacion de zsh   
 def zshinstall():
     
-    username = input("¿cual es tu username?")
+    username = input("¿cual es tu username? ")
     user = "usermod --shell /usr/bin/zsh " + str(username)
     
-    zsh= ["sudo apt install zsh",
+     
+    zsh= ["sudo apt install zsh -y",
         "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k && echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc",
         "usermod --shell /usr/bin/zsh root",
-        "ln -s -f /home/user/.zshrc .zshrc"]
+        "cd && ln -s -f /home/user/.zshrc .zshrc"]
     
-    simbolico = zsh[3].replace("user",username)
-    
+    simbolico = zsh[3].replace("user", username)
+   
     subprocess.run(zsh[0], shell=True)
     subprocess.run(zsh[1], shell=True)
     subprocess.run(zsh[2], shell=True)
