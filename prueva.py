@@ -1,10 +1,15 @@
 #!/usr/bin/python3
 
-c = input("cual es el user?")
 
-a = ["hola, /home/user/, ¿como esta?",
-     "hola, username, como estas?"]
+def user():
+     c = input("cual es el user?")
 
-b = a[0].replace("user", c)
+     a = ["hola, /home/user/, ¿como esta?",
+          "wget https://raw.githubusercontent.com/skayblye/auto-install-bspwm/master/kitty.conf -O home/12345/.config/kitty/kitty.conf"]
 
-print(b)
+     b = a[1].replace("12345", c)
+
+     print(b)
+
+
+user()

@@ -1,8 +1,10 @@
 #!/usr/bin/python3
+#version: python 3.9.2
 
 from dataclasses import replace
 import subprocess
 
+username = input("¿cual es tu username? ")
 
 def shellerores():
     shellpregunta = "echo $?"
@@ -32,7 +34,8 @@ def installfont():
 #instalacion de zsh   
 def zshinstall():
     
-    username = input("¿cual es tu username? ")
+    #pedimos el nombre de usuario para usarlo en establecer la shell principal como zsh y para hacer un enlase en la config del usuario y de root
+   
     user = "usermod --shell /usr/bin/zsh " + str(username)
     
      
@@ -41,6 +44,7 @@ def zshinstall():
         "usermod --shell /usr/bin/zsh root",
         "cd && ln -s -f /home/user/.zshrc .zshrc"]
     
+    #renplazamos la palabra user del ultimo comando con el usuario intruducido en la variable usermane
     simbolico = zsh[3].replace("user", username)
    
     subprocess.run(zsh[0], shell=True)
@@ -49,7 +53,22 @@ def zshinstall():
     subprocess.run(user, shell=True)
     subprocess.run(simbolico, shell=True)
 
+#instalacion de kitty y configuraciones
+def kittyinstall():
+    
+    kitty = ["sudo apt install kitty -y",
+             "wget -P /home/12345/.config/kitty/ https://raw.githubusercontent.com/skayblye/auto-install-bspwm/master/kitty.conf",
+             "wget -P /home/12345/.config/kitty/ https://raw.githubusercontent.com/skayblye/auto-install-bspwm/master/color.ini"]
+    
+    a = kitty[1].replace("12345", username)
+    b = kitty[2].replace("12345", username)
+    
+    subprocess.run(kitty[0], shell=True)
+    subprocess.run(a, shell=True)
+    subprocess.run(b, shell=True)
+    
 
 systemupdate()
 installfont()
 zshinstall()
+kittyinstall()
