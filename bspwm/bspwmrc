@@ -3,9 +3,7 @@
 pgrep -x sxhkd > /dev/null || sxhkd &
 
 #monitores y configuracion
-bspc monitor HDMI-0 -n monitor0 -d 1 2 3 4
-bspc monitor VGA-0 -n monitor1 -d 6 7 8 9
-bspc monitor HDMI-0 -s VGA-0
+bspc monitor -d 1 2 3 4 5
 
 
 bspc config border_width         2
@@ -34,13 +32,10 @@ bspc config focus_follows_pointer true
 feh --bg-fill ~/Imágenes/fondos/1145320.png
 
 #polybar con el tema forest
-#~/.config/polybar/launch.sh --forest
 
 ~/.config/polybar/forest/launch.sh
 
 #lanzamiento de picom, esto nos pone la trasparencia
+
 picom --experimental-backends &
 bspc config border_width 2
-
-#scripts de python
-#~/.config/pythonScripts/InicioAutomatico.py
