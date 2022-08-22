@@ -6,17 +6,13 @@ import subprocess
 
 username = input("¿cual es tu username? ")
 
-def shellerores():
-    shellpregunta = "echo $?"
-    
-    errores = subprocess.run(shellpregunta, shell=True)
-    return errores
-
 # actializacion de dependecias
 def systemupdate():
-    updatesystem = "sudo apt update"
+    updatesystem = ["apt update",
+                    "apt install bspwm sxhkd picom feh polybar rofi i3lock kitty ranger -y"]
     
-    subprocess.run(updatesystem, shell=True)
+    subprocess.run(updatesystem[0], shell=True)
+    subprocess.run(updatesystem[1], shell=True)
     
 #instalacion de funestes y instalcion de terminal 
 def installfont():
@@ -34,11 +30,9 @@ def installfont():
 #instalacion de zsh   
 def zshinstall():
     
-    #pedimos el nombre de usuario para usarlo en establecer la shell principal como zsh y para hacer un enlase en la config del usuario y de root
-   
+    #pasamos el nombre de usuario a otra varivle con el comando 
     user = "usermod --shell /usr/bin/zsh " + str(username)
     
-     
     zsh= ["sudo apt install zsh -y",
         "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k && echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc",
         "usermod --shell /usr/bin/zsh root",
@@ -56,17 +50,18 @@ def zshinstall():
 #instalacion de kitty y configuraciones
 def kittyinstall():
     
-    kitty = ["sudo apt install kitty -y",
-             "wget -P /home/12345/.config/kitty/ https://raw.githubusercontent.com/skayblye/auto-install-bspwm/master/kitty.conf",
+    kitty = ["wget -P /home/12345/.config/kitty/ https://raw.githubusercontent.com/skayblye/auto-install-bspwm/master/kitty.conf",
              "wget -P /home/12345/.config/kitty/ https://raw.githubusercontent.com/skayblye/auto-install-bspwm/master/color.ini"]
     
-    a = kitty[1].replace("12345", username)
-    b = kitty[2].replace("12345", username)
+    a = kitty[0].replace("12345", username)
+    b = kitty[1].replace("12345", username)
     
-    subprocess.run(kitty[0], shell=True)
     subprocess.run(a, shell=True)
     subprocess.run(b, shell=True)
     
+def bspwminstall():
+    bspwm[]
+
 
 systemupdate()
 installfont()
