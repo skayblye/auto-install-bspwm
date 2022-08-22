@@ -76,7 +76,9 @@ def bspwminstall():
     subprocess.run(bspwm[4], shell=True)
     subprocess.run(bspwm[5], shell=True)
 
-#instacion de po
+#instacion de polybar
+def polybarinstall():
+    polybar = []
 
 systemupdate()
 installfont()
