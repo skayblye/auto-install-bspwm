@@ -18,9 +18,9 @@ def systemupdate():
 def installfont():
     
     #comandos
-    installhackfonts = ["sudo wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip -O /usr/local/share/fonts/Hack.zip",
-                        "sudo unzip /usr/local/share/fonts/Hack.zip -d /usr/local/share/fonts/",
-                        "sudo rm /usr/local/share/fonts/Hack.zip"]
+    installhackfonts = ["wget https://github.com/ryanoasis/nerd-fonts/releases/download/v2.1.0/Hack.zip -O /usr/local/share/fonts/Hack.zip",
+                        "unzip /usr/local/share/fonts/Hack.zip -d /usr/local/share/fonts/",
+                        "rm /usr/local/share/fonts/Hack.zip"]
     
     #NOTA PERSONAL: recuerda buscar una manera de hacer esto sin tres subprocess.run
     subprocess.run(installhackfonts[0], shell=True)
@@ -58,16 +58,28 @@ def kittyinstall():
     
     subprocess.run(a, shell=True)
     subprocess.run(b, shell=True)
-    
+ 
+#instalacion de bspwm y sxhkd con sus configuraciones
 def bspwminstall():
     
-    bspwm = ["cd ~/.config/ && mkdir bspwm sxhkd && cd bspwm && mkdir scripts",
+    bspwm = ["mkdir -p ~/.config/bspwm/scripts && mkdir ~/.config/sxhkd",
              "wget -P ~/.config/bspwm/ https://raw.githubusercontent.com/skayblye/auto-install-bspwm/master/bspwm/bspwmrc",
-             "wget -p ~/.config/bspwm/scripts/ https://raw.githubusercontent.com/skayblye/auto-install-bspwm/master/bspwm/scripts/bspwm_resize"
-             "wget -P ~/.config/sxhkd/ "]
+             "wget -P ~/.config/bspwm/scripts/ https://raw.githubusercontent.com/skayblye/auto-install-bspwm/master/bspwm/scripts/bspwm_resize",
+             "wget -P ~/.config/sxhkd/ https://raw.githubusercontent.com/skayblye/auto-install-bspwm/master/sxhkd/sxhkdrc",
+             "cd && cd ~/.config/bspwm/ && chmod +x bspwmrc",
+             "cd && cd ~/.config/bspwm/scripts/ && chmod +x bspwm_resize"]
+    
+    subprocess.run(bspwm[0], shell=True)
+    subprocess.run(bspwm[1], shell=True)
+    subprocess.run(bspwm[2], shell=True)
+    subprocess.run(bspwm[3], shell=True)
+    subprocess.run(bspwm[4], shell=True)
+    subprocess.run(bspwm[5], shell=True)
 
+#instacion de po
 
 systemupdate()
 installfont()
 zshinstall()
 kittyinstall()
+bspwminstall()
