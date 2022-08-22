@@ -60,7 +60,11 @@ def kittyinstall():
     subprocess.run(b, shell=True)
     
 def bspwminstall():
-    bspwm[]
+    
+    bspwm = ["cd ~/.config/ && mkdir bspwm sxhkd && cd bspwm && mkdir scripts",
+             "wget -P ~/.config/bspwm/ https://raw.githubusercontent.com/skayblye/auto-install-bspwm/master/bspwm/bspwmrc",
+             "wget -p ~/.config/bspwm/scripts/ https://raw.githubusercontent.com/skayblye/auto-install-bspwm/master/bspwm/scripts/bspwm_resize"
+             "wget -P ~/.config/sxhkd/ "]
 
 
 systemupdate()
