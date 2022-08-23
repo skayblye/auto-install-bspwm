@@ -6,15 +6,15 @@ import subprocess
 
 username = input("¿cual es tu username? ")
 
-# actializacion de dependecias
+# actializacion de dependecias (root)
 def systemupdate():
     updatesystem = ["apt update",
-                    "apt install bspwm sxhkd picom feh polybar rofi i3lock kitty ranger -y"]
+                    "apt install bspwm sxhkd picom feh polybar rofi i3lock kitty ranger git -y"]
     
     subprocess.run(updatesystem[0], shell=True)
     subprocess.run(updatesystem[1], shell=True)
     
-#instalacion de funestes y instalcion de terminal 
+#instalacion de funestes y instalcion de terminal (root)
 def installfont():
     
     #comandos
@@ -27,7 +27,7 @@ def installfont():
     subprocess.run(installhackfonts[1], shell=True)
     subprocess.run(installhackfonts[2], shell=True)
 
-#instalacion de zsh   
+#instalacion de zsh (root)
 def zshinstall():
     
     #pasamos el nombre de usuario a otra varivle con el comando 
@@ -47,25 +47,29 @@ def zshinstall():
     subprocess.run(user, shell=True)
     subprocess.run(simbolico, shell=True)
 
+#instalacion de zsh para el usuario normal
+def zshinstalluser():
+    
+    zsh = ["cd",
+           "git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/powerlevel10k && echo 'source ~/powerlevel10k/powerlevel10k.zsh-theme' >>~/.zshrc"]
+    
+    subprocess.run(zsh[0], shell=True)
+    subprocess.run(zsh[1], shell=True)
+    
 #instalacion de kitty y configuraciones
 def kittyinstall():
     
-    kitty = ["wget -P /home/12345/.config/kitty/ https://raw.githubusercontent.com/skayblye/auto-install-bspwm/master/kitty.conf",
-             "wget -P /home/12345/.config/kitty/ https://raw.githubusercontent.com/skayblye/auto-install-bspwm/master/color.ini"]
+    kitty = ["mv color.ini ~/.config/kitty/",
+             "mv kitty.ini ~/.config/kitty/"]
     
-    a = kitty[0].replace("12345", username)
-    b = kitty[1].replace("12345", username)
-    
-    subprocess.run(a, shell=True)
-    subprocess.run(b, shell=True)
+    subprocess.run(kitty[0], shell=True)
+    subprocess.run(kitty[1], shell=True)
  
 #instalacion de bspwm y sxhkd con sus configuraciones
 def bspwminstall():
     
-    bspwm = ["mkdir -p ~/.config/bspwm/scripts && mkdir ~/.config/sxhkd",
-             "wget -P ~/.config/bspwm/ https://raw.githubusercontent.com/skayblye/auto-install-bspwm/master/bspwm/bspwmrc",
-             "wget -P ~/.config/bspwm/scripts/ https://raw.githubusercontent.com/skayblye/auto-install-bspwm/master/bspwm/scripts/bspwm_resize",
-             "wget -P ~/.config/sxhkd/ https://raw.githubusercontent.com/skayblye/auto-install-bspwm/master/sxhkd/sxhkdrc",
+    bspwm = ["mv bspwm/ ~/.config/",
+             "mv sxhkd/ ~/.config/",
              "cd && cd ~/.config/bspwm/ && chmod +x bspwmrc",
              "cd && cd ~/.config/bspwm/scripts/ && chmod +x bspwm_resize"]
     
@@ -73,15 +77,26 @@ def bspwminstall():
     subprocess.run(bspwm[1], shell=True)
     subprocess.run(bspwm[2], shell=True)
     subprocess.run(bspwm[3], shell=True)
-    subprocess.run(bspwm[4], shell=True)
-    subprocess.run(bspwm[5], shell=True)
+
+#instalacion de picom
+def picominstall():
+    
+    picom = "mv picom/ ~/.config/"
+    
+    subprocess.run(picom, shell=True)
 
 #instacion de polybar
 def polybarinstall():
-    polybar = []
+    polybar = ["git clone --depth=1 https://github.com/adi1090x/polybar-themes.git && cd polybar-themes && chmod +x setup.sh",
+               "./setup.sh"]
+    
+    subprocess.run(polybar[0], shell=True)
+    subprocess.run(polybar[1], shell=True)
+    
 
 systemupdate()
 installfont()
 zshinstall()
 kittyinstall()
 bspwminstall()
+polybarinstall()
