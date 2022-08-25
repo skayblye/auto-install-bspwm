@@ -88,11 +88,9 @@ def zshinstalluser():
 #instalacion de kitty y configuraciones
 def kittyinstall():
     
-    kitty = ["mv color.ini ~/.config/kitty/",
-             "mv kitty.ini ~/.config/kitty/"]
+    kitty = "mv kitty/ ~/.config/"
     
-    subprocess.run(kitty[0], shell=True)
-    subprocess.run(kitty[1], shell=True)
+    subprocess.run(kitty, shell=True)
  
 # instalacion de bspwm y sxhkd con sus configuraciones
 def bspwminstall():
