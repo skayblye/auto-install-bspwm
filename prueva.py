@@ -1,5 +1,8 @@
 #!/usr/bin/python3
 
+import re
+import subprocess
+
 
 def user():
      c = input("cual es el user?")
@@ -12,4 +15,14 @@ def user():
      print(b)
 
 
-user()
+
+
+
+a = subprocess.check_output("id -u",shell=True)
+
+print(a)
+
+if a == 0:
+     print("la primera face nesesita root")
+else:
+     print("error")

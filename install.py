@@ -4,9 +4,39 @@
 from dataclasses import replace
 import subprocess
 
-username = input("¿cual es tu username? ")
 
-# actializacion de dependecias (root)
+
+# iniciamos la primera etapa de instalacion (root)
+def inicio():
+    global username
+    username = input("¿cual es tu username? ")
+    a = subprocess.check_output("id -u",shell=True)
+    b= b'0\n'
+
+    if a == b:
+        systemupdate()
+        installfont()
+        zshinstall()
+    else:
+        print("La primera face nessita root")
+
+#segunda parte de la instalacion
+def inicioParte2():
+    c = "su " + str(username)
+    subprocess.run(c, shell=True)
+    a = subprocess.check_output("id -u",shell=True)
+    b = b'1000\n'
+     
+    if a == b:
+        zshinstalluser()
+        kittyinstall()
+        bspwminstall()
+        picominstall()
+        polybarinstall()
+    else:
+        print("La segunda face no nesesita root")
+
+# actualizacion de dependencias (root)
 def systemupdate():
     updatesystem = ["apt update",
                     "apt install bspwm sxhkd picom feh polybar rofi i3lock kitty ranger git -y"]
@@ -14,7 +44,7 @@ def systemupdate():
     subprocess.run(updatesystem[0], shell=True)
     subprocess.run(updatesystem[1], shell=True)
     
-#instalacion de funestes y instalcion de terminal (root)
+# instalacion de fuentes (root)
 def installfont():
     
     #comandos
@@ -27,7 +57,7 @@ def installfont():
     subprocess.run(installhackfonts[1], shell=True)
     subprocess.run(installhackfonts[2], shell=True)
 
-#instalacion de zsh (root)
+# instalacion de zsh (root)
 def zshinstall():
     
     #pasamos el nombre de usuario a otra varivle con el comando 
@@ -47,7 +77,7 @@ def zshinstall():
     subprocess.run(user, shell=True)
     subprocess.run(simbolico, shell=True)
 
-#instalacion de zsh para el usuario normal
+# instalacion de zsh para el usuario normal
 def zshinstalluser():
     
     zsh = ["cd",
@@ -65,7 +95,7 @@ def kittyinstall():
     subprocess.run(kitty[0], shell=True)
     subprocess.run(kitty[1], shell=True)
  
-#instalacion de bspwm y sxhkd con sus configuraciones
+# instalacion de bspwm y sxhkd con sus configuraciones
 def bspwminstall():
     
     bspwm = ["mv bspwm/ ~/.config/",
@@ -78,25 +108,21 @@ def bspwminstall():
     subprocess.run(bspwm[2], shell=True)
     subprocess.run(bspwm[3], shell=True)
 
-#instalacion de picom
+# instalacion de picom
 def picominstall():
     
     picom = "mv picom/ ~/.config/"
     
     subprocess.run(picom, shell=True)
 
-#instacion de polybar
+# instacion de polybar
 def polybarinstall():
     polybar = ["git clone --depth=1 https://github.com/adi1090x/polybar-themes.git && cd polybar-themes && chmod +x setup.sh",
                "./setup.sh"]
     
     subprocess.run(polybar[0], shell=True)
     subprocess.run(polybar[1], shell=True)
-    
 
-systemupdate()
-installfont()
-zshinstall()
-kittyinstall()
-bspwminstall()
-polybarinstall()
+
+inicio()
+inicioParte2()    
