@@ -7,10 +7,8 @@ import subprocess
 
 # iniciamos la primera etapa de instalacion (root)
 def inicio():
-    global username
-    username = input("¿cual es tu username? ")
     a = subprocess.check_output("id -u",shell=True)
-    b= b'0\n'
+    b = b'0\n'
 
     if a == b:
         systemupdate()
@@ -59,6 +57,7 @@ def installfont():
 # instalacion de zsh (root)
 def zshinstall():
     
+    username = input("¿cual es tu username? ")
     #pasamos el nombre de usuario a otra varivle con el comando 
     user = "usermod --shell /usr/bin/zsh " + str(username)
     
