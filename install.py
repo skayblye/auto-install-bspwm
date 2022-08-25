@@ -2,9 +2,8 @@
 #version: python 3.9.2
 
 from dataclasses import replace
+from mimetypes import init
 import subprocess
-
-
 
 # iniciamos la primera etapa de instalacion (root)
 def inicio():
@@ -18,12 +17,11 @@ def inicio():
         installfont()
         zshinstall()
     else:
-        print("La primera face nessita root")
+        print("La primera face nesita root")
+        quit()
 
 #segunda parte de la instalacion
 def inicioParte2():
-    c = "su " + str(username)
-    subprocess.run(c, shell=True)
     a = subprocess.check_output("id -u",shell=True)
     b = b'1000\n'
      
@@ -35,6 +33,7 @@ def inicioParte2():
         polybarinstall()
     else:
         print("La segunda face no nesesita root")
+        quit()
 
 # actualizacion de dependencias (root)
 def systemupdate():
@@ -124,5 +123,16 @@ def polybarinstall():
     subprocess.run(polybar[1], shell=True)
 
 
-inicio()
-inicioParte2()    
+print("La instalacion se divide en dos partes, se ejecutara la primera parte y al finalizar ejecute la segunda parte\n")
+print("ejecute la primera parte intruducioendo un: 1, al finalizar ejecute de nuevo y introducza un 2 para segunda parte\n")
+print("primera parte: 1,  segunda parte:  2\n")
+a = input()
+
+if a == "1":
+    inicio()
+    quit()
+elif a == "2":
+    inicioParte2()
+    quit()   
+else:
+    print("por favor introduza un valor valido")
