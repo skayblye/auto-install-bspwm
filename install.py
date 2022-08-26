@@ -28,6 +28,7 @@ def inicioParte2():
         kittyinstall()
         bspwminstall()
         picominstall()
+        installwallpaper()
         polybarinstall()
     else:
         print("La segunda face no nesesita root")
@@ -111,11 +112,18 @@ def picominstall():
     
     subprocess.run(picom, shell=True)
 
+# fondo de pantalla
+def installwallpaper():
+    
+    wallpaper = "mv fondos/ ~/Desktop"
+    
+    subprocess.run(wallpaper, shell=True)
+
 # instacion de polybar
 def polybarinstall():
     polybar = ["git clone --depth=1 https://github.com/adi1090x/polybar-themes.git && cd polybar-themes && chmod +x setup.sh && ./setup.sh",
                "cd && rm -rf ~/.config/polybar/forest",
-               "mv forest ~/.config/polybar"]
+               "mv forest/ ~/.config/polybar"]
     
     subprocess.run(polybar[0], shell=True)
     subprocess.run(polybar[1], shell=True)
