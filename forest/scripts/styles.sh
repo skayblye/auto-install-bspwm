@@ -17,11 +17,11 @@ change_color() {
 
 	* {
 	  al:   #00000000;
-	  bg:   ${BG}FF;
-	  bga:  ${BGA}FF;
+	  bg:   ${BG}ff;
+	  bga:  ${BGA}ff;
 	  fg:   ${FG}FF;
 	  ac:   ${AC}FF;
-	  se:   ${SE}FF;
+	  se:   ${SE}ff;
 	}
 	EOF
 	
@@ -29,12 +29,12 @@ change_color() {
 }
 
 if  [[ $1 = "--default" ]]; then
-	BG="#212B30"
+	BG="#2b143e"
 	FG="#C4C7C5"
-	BGA="#263035"
-	SEP="#3F5360"
+	BGA="#2b143e"
+	SEP="#d5388a"
 	AC="#EC407A"
-	SE="#4DD0E1"
+	SE="#d5388a"
 	change_color
 elif  [[ $1 = "--nord" ]]; then
 	BG="#3B4252"
