@@ -113,9 +113,13 @@ def picominstall():
 
 # instacion de polybar
 def polybarinstall():
-    polybar = "git clone --depth=1 https://github.com/adi1090x/polybar-themes.git && cd polybar-themes && chmod +x setup.sh && ./setup.sh"
+    polybar = ["git clone --depth=1 https://github.com/adi1090x/polybar-themes.git && cd polybar-themes && chmod +x setup.sh && ./setup.sh",
+               "cd && rm -rf ~/.config/polybar/forest",
+               "mv forest ~/.config/polybar"]
     
-    subprocess.run(polybar, shell=True)
+    subprocess.run(polybar[0], shell=True)
+    subprocess.run(polybar[1], shell=True)
+    subprocess.run(polybar[2], shell=True)
 
 
 print("La instalacion se divide en dos partes, se ejecutara la primera parte y al finalizar ejecute la segunda parte\n")
