@@ -58,7 +58,7 @@ def installfont():
 # instalacion de zsh (root)
 def zshinstall():
     
-    username = input("¿cual es tu username? ")
+    username = input("[+] ¿cual es tu username? ")
     #pasamos el nombre de usuario a otra varivle con el comando 
     user = "usermod --shell /usr/bin/zsh " + str(username)
     
@@ -130,9 +130,9 @@ def polybarinstall():
     subprocess.run(polybar[2], shell=True)
 
 
-print("[+] La instalacion se divide en dos partes, se ejecutara la primera parte y al finalizar ejecute la segunda parte\n")
+print("[+] La instalacion se divide en dos partes, se ejecutara la primera parte como root y al finalizar ejecute la segunda parte como su usuario normal\n")
 print("[+] Ejecute la primera parte intruducioendo un: 1, al finalizar ejecute de nuevo y introducza un 2 para segunda parte\n")
-print("[!] Primera parte: 1,  segunda parte:  2\n")
+print("[!] Primera parte: 1,  segunda parte: 2,    para salir: 3\n")
 a = input()
 
 if a == "1":
@@ -140,6 +140,9 @@ if a == "1":
     quit()
 elif a == "2":
     inicioParte2()
+    quit()
+elif a == "3":
+    print("[+] Adios...")
     quit()   
 else:
     print("[-] Por favor introduza un valor valido")
