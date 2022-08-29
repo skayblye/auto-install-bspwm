@@ -130,9 +130,9 @@ def polybarinstall():
     subprocess.run(polybar[2], shell=True)
 
 
-print("La instalacion se divide en dos partes, se ejecutara la primera parte y al finalizar ejecute la segunda parte\n")
-print("ejecute la primera parte intruducioendo un: 1, al finalizar ejecute de nuevo y introducza un 2 para segunda parte\n")
-print("primera parte: 1,  segunda parte:  2\n")
+print("[+] La instalacion se divide en dos partes, se ejecutara la primera parte y al finalizar ejecute la segunda parte\n")
+print("[+] Ejecute la primera parte intruducioendo un: 1, al finalizar ejecute de nuevo y introducza un 2 para segunda parte\n")
+print("[!] Primera parte: 1,  segunda parte:  2\n")
 a = input()
 
 if a == "1":
@@ -142,4 +142,4 @@ elif a == "2":
     inicioParte2()
     quit()   
 else:
-    print("por favor introduza un valor valido")
+    print("[-] Por favor introduza un valor valido")
