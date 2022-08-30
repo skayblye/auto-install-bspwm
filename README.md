@@ -18,10 +18,10 @@ cd auto-install-bspwm
 
 La instalación está dividida en dos partes actualmente. La primera necesita root para funcionar e instalar lo necesario. La segunda es con su usuario.
 
-<code>
+``
 sudo su
 python3 install.py
-</code>
+``
 
 ###
 
