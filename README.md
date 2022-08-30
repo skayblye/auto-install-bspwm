@@ -11,19 +11,20 @@ Un pequeño script, programado en python 3 para automatizar la instalación de b
 
 ## Instalacion
 
-<code>
+```
 git clone https://github.com/skayblye/auto-install-bspwm
-cd auto-install-bspwm
-</code>
+
+cd auto-install-bspwm/
+```
 
 La instalación está dividida en dos partes actualmente. La primera necesita root para funcionar e instalar lo necesario. La segunda es con su usuario.
 
-``
+```
 sudo su
-python3 install.py
-``
 
-###
+
+python3 install.py
+```
 
 ### Vista general
 
