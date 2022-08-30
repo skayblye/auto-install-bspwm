@@ -52,7 +52,7 @@ python3 install.py
   
 - **kitty**: Terminal.
   
-- **rofi**: lanzador de aplicaciones
+- **rofi**: lanzador de aplicaciones.
   
 - **feh**: Visor de imágenes, usado para cargar el fondo.
   
